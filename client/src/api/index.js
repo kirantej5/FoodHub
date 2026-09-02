@@ -1,8 +1,8 @@
-﻿import axios from 'axios';
+import axios from 'axios';
 import toast from 'react-hot-toast';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_URL || '/api',
   headers: { 'Content-Type': 'application/json' },
   timeout: 10000,
 });
@@ -83,4 +83,16 @@ export const orderApi = {
 // ── Coupons ───────────────────────────────────────────────────────────────────
 export const couponApi = {
   validate: (code, amount) => api.post('/coupons/validate', { code, amount }),
+};
+
+// ── Admin ─────────────────────────────────────────────────────────────────────
+export const adminApi = {
+  getDashboard: () => api.get('/admin/dashboard'),
+  getUsers: (params) => api.get('/admin/users', { params }),
+  deleteUser: (id) => api.delete(`/admin/users/${id}`),
+  createFood: (data) => api.post('/foods', data, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  updateFood: (id, data) => api.put(`/foods/${id}`, data, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  deleteFood: (id) => api.delete(`/foods/${id}`),
+  getAllOrders: (params) => api.get('/orders', { params }), // assuming this exists or use regular order get
+  updateOrderStatus: (id, status) => api.put(`/orders/${id}/status`, { status }),
 };

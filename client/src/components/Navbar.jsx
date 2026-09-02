@@ -1,4 +1,4 @@
-﻿import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { ShoppingCart, User, LogOut, ChevronDown, UtensilsCrossed, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { useAuthStore } from '../store/authStore';
@@ -83,6 +83,13 @@ export default function Navbar() {
                       style={{ color: 'var(--color-text)' }}>
                       <User size={15} /> Profile
                     </Link>
+                    {user?.role === 'admin' && (
+                      <Link to="/admin/dashboard" onClick={() => setUserOpen(false)}
+                        className="flex items-center gap-2 px-4 py-2.5 text-sm transition-colors hover:bg-white/5"
+                        style={{ color: '#f97316' }}>
+                        ⚙️ Admin Panel
+                      </Link>
+                    )}
                     <button onClick={handleLogout}
                       className="w-full flex items-center gap-2 px-4 py-2.5 text-sm transition-colors hover:bg-white/5"
                       style={{ color: '#ef4444' }}>
