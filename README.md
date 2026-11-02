@@ -125,7 +125,11 @@ Never commit `.env` files or production credentials. The committed example files
 
 ## Screenshots and demo
 
-The repository includes [`docs/screenshots/hero.jpg`](docs/screenshots/hero.jpg) and an architecture diagram. Add authenticated screenshots of the menu, cart, checkout, order tracking, and admin dashboard after starting the seeded app locally.
+| FoodHub experience | Architecture |
+| :---: | :---: |
+| ![FoodHub application preview](docs/screenshots/app-preview.svg) | ![FoodHub architecture](docs/architecture.svg) |
+
+The repository also includes [`docs/screenshots/hero.jpg`](docs/screenshots/hero.jpg). The preview illustrates the intended customer browsing experience; capture authenticated menu, cart, checkout, order tracking, and admin screens after starting the seeded app locally.
 
 ## Testing and checks
 

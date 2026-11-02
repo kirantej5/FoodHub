@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">FoodHub application preview</title>
+  <desc id="desc">A dark FoodHub restaurant browsing preview with navigation, search, food categories, and restaurant cards.</desc>
+  <rect width="1200" height="720" rx="24" fill="#0a0a0a"/>
+  <rect x="24" y="24" width="1152" height="672" rx="18" fill="#111113" stroke="#292929"/>
+  <text x="66" y="78" fill="#f97316" font-family="Arial,sans-serif" font-size="28" font-weight="700">foodhub</text>
+  <text x="650" y="78" fill="#a1a1aa" font-family="Arial,sans-serif" font-size="15">Home</text><text x="730" y="78" fill="#a1a1aa" font-family="Arial,sans-serif" font-size="15">Foods</text><text x="810" y="78" fill="#a1a1aa" font-family="Arial,sans-serif" font-size="15">Restaurants</text>
+  <rect x="1010" y="50" width="110" height="38" rx="19" fill="#f97316"/><text x="1065" y="75" fill="#fff" font-family="Arial,sans-serif" font-size="14" text-anchor="middle" font-weight="700">Sign in</text>
+  <rect x="66" y="122" width="1068" height="210" rx="18" fill="#24170f"/>
+  <circle cx="1010" cy="165" r="140" fill="#f9731622"/><circle cx="1080" cy="290" r="110" fill="#f9731616"/>
+  <text x="112" y="178" fill="#fb923c" font-family="Arial,sans-serif" font-size="13" font-weight="700">FAST DELIVERY IN TOWN</text>
+  <text x="112" y="220" fill="#fff" font-family="Arial,sans-serif" font-size="38" font-weight="700">Delicious food,</text><text x="112" y="265" fill="#f97316" font-family="Arial,sans-serif" font-size="38" font-weight="700">delivered fast.</text>
+  <rect x="112" y="285" width="170" height="34" rx="17" fill="#f97316"/><text x="197" y="307" fill="#fff" font-family="Arial,sans-serif" font-size="13" text-anchor="middle" font-weight="700">Order now →</text>
+  <text x="66" y="380" fill="#fff" font-family="Arial,sans-serif" font-size="22" font-weight="700">Explore by category</text>
+  <g font-family="Arial,sans-serif" text-anchor="middle"><circle cx="130" cy="440" r="34" fill="#432818"/><text x="130" y="446" fill="#fb923c" font-size="24">P</text><text x="130" y="497" fill="#d4d4d8" font-size="13">Pizza</text><circle cx="270" cy="440" r="34" fill="#432818"/><text x="270" y="446" fill="#fb923c" font-size="24">B</text><text x="270" y="497" fill="#d4d4d8" font-size="13">Burgers</text><circle cx="410" cy="440" r="34" fill="#432818"/><text x="410" y="446" fill="#fb923c" font-size="24">S</text><text x="410" y="497" fill="#d4d4d8" font-size="13">Sushi</text><circle cx="550" cy="440" r="34" fill="#432818"/><text x="550" y="446" fill="#fb923c" font-size="24">I</text><text x="550" y="497" fill="#d4d4d8" font-size="13">Indian</text></g>
+  <text x="66" y="558" fill="#fff" font-family="Arial,sans-serif" font-size="22" font-weight="700">Featured restaurants</text>
+  <g><rect x="66" y="580" width="325" height="80" rx="12" fill="#1d1d20"/><rect x="411" y="580" width="325" height="80" rx="12" fill="#1d1d20"/><rect x="756" y="580" width="325" height="80" rx="12" fill="#1d1d20"/><circle cx="108" cy="620" r="25" fill="#7c3f22"/><circle cx="453" cy="620" r="25" fill="#3f5e45"/><circle cx="798" cy="620" r="25" fill="#5b3d72"/></g>
+  <g fill="#fff" font-family="Arial,sans-serif" font-size="14" font-weight="700"><text x="148" y="615">Bella Napoli</text><text x="493" y="615">Burger Republic</text><text x="838" y="615">Tokyo Garden</text></g><g fill="#a1a1aa" font-family="Arial,sans-serif" font-size="12"><text x="148" y="638">Italian · 25–35 min</text><text x="493" y="638">American · 20–30 min</text><text x="838" y="638">Japanese · 30–45 min</text></g>
+</svg>
