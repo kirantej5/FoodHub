@@ -1,6 +1,6 @@
 ﻿import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Utensils, Star, Clock, MapPin } from 'lucide-react';
+import { ArrowRight, Star, Clock, MapPin } from 'lucide-react';
 import { restaurantApi, foodApi, categoryApi } from '../api';
 import FoodCard from '../components/FoodCard';
 import RestaurantCard from '../components/RestaurantCard';

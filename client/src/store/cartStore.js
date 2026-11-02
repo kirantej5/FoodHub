@@ -1,8 +1,14 @@
 ﻿import { create } from 'zustand';
 import { cartApi } from '../api';
 
-export const useCartStore = create((set, get) => ({
-  items: [],
+const withTotals = (items) => ({
+  items,
+  totalItems: items.reduce((sum, item) => sum + item.quantity, 0),
+  subtotal: items.reduce((sum, item) => sum + item.price * item.quantity, 0),
+});
+
+export const useCartStore = create((set) => ({
+  ...withTotals([]),
   restaurant: null,
   isOpen: false,
   loading: false,
@@ -12,7 +18,7 @@ export const useCartStore = create((set, get) => ({
       const res = await cartApi.get();
       const cart = res.data.data.cart;
       if (cart) {
-        set({ items: cart.items || [], restaurant: cart.restaurant || null });
+        set({ ...withTotals(cart.items || []), restaurant: cart.restaurant || null });
       }
     } catch {
       // not logged in
@@ -24,7 +30,7 @@ export const useCartStore = create((set, get) => ({
     try {
       const res = await cartApi.add({ foodId, quantity, price });
       const cart = res.data.data.cart;
-      set({ items: cart.items || [], restaurant: cart.restaurant || null, isOpen: true });
+      set({ ...withTotals(cart.items || []), restaurant: cart.restaurant || null, isOpen: true });
     } finally {
       set({ loading: false });
     }
@@ -34,7 +40,7 @@ export const useCartStore = create((set, get) => ({
     try {
       const res = await cartApi.update(foodId, { quantity });
       const cart = res.data.data.cart;
-      set({ items: cart.items || [], restaurant: cart.restaurant || null });
+      set({ ...withTotals(cart.items || []), restaurant: cart.restaurant || null });
     } catch {}
   },
 
@@ -42,14 +48,14 @@ export const useCartStore = create((set, get) => ({
     try {
       const res = await cartApi.remove(foodId);
       const cart = res.data.data.cart;
-      set({ items: cart.items || [], restaurant: cart.restaurant || null });
+      set({ ...withTotals(cart.items || []), restaurant: cart.restaurant || null });
     } catch {}
   },
 
   clearCart: async () => {
     try {
       await cartApi.clear();
-      set({ items: [], restaurant: null });
+      set({ ...withTotals([]), restaurant: null });
     } catch {}
   },
 
@@ -57,10 +63,4 @@ export const useCartStore = create((set, get) => ({
   closeCart: () => set({ isOpen: false }),
   toggleCart: () => set((s) => ({ isOpen: !s.isOpen })),
 
-  get totalItems() {
-    return get().items.reduce((sum, i) => sum + i.quantity, 0);
-  },
-  get subtotal() {
-    return get().items.reduce((sum, i) => sum + i.price * i.quantity, 0);
-  },
 }));

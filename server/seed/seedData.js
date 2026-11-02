@@ -1,6 +1,5 @@
 ﻿import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
@@ -32,11 +31,10 @@ async function seed() {
   console.log('🗑  Cleared existing data');
 
   // ── Admin user ─────────────────────────────────────────────────────────────
-  const adminPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD || 'Admin@123456', 12);
   await User.create({
     name: 'Admin',
     email: process.env.ADMIN_EMAIL || 'admin@foodhub.com',
-    password: adminPassword,
+    password: process.env.ADMIN_PASSWORD || 'Admin@123456',
     role: 'admin',
     isEmailVerified: true,
   });

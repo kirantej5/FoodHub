@@ -1,0 +1,67 @@
+FoodHub - Local Development Guide
+
+Prerequisites
+-------------
+- Node.js 20 or later
+- MongoDB running locally, or a MongoDB connection string
+
+1. Install dependencies
+-----------------------
+From the FoodHub directory:
+
+    npm install
+    npm run install:all
+
+2. Configure the backend
+------------------------
+Copy server/.env.example to server/.env and update the values as needed.
+
+Important variables:
+- MONGODB_URI: MongoDB connection string
+- JWT_SECRET: a long random secret
+- CLIENT_URL: http://localhost:5173
+
+3. Configure the frontend
+-------------------------
+Copy client/.env.example to client/.env.
+The default VITE_API_URL is:
+
+    http://localhost:5000/api
+
+4. Seed demo data
+-----------------
+From the FoodHub directory:
+
+    npm run seed
+
+This clears the local FoodHub database and creates demo categories,
+restaurants, foods, coupons, and an admin account. Use the credentials
+configured in server/.env for the seeded admin account.
+
+5. Start the application
+------------------------
+Start both frontend and backend:
+
+    npm run dev
+
+Or start them separately:
+
+    npm run server
+    npm run client
+
+Frontend: http://localhost:5173
+Backend:  http://localhost:5000
+Swagger:  http://localhost:5000/api-docs
+
+6. Run checks
+------------
+Backend tests:
+
+    cd server
+    npm test
+
+Frontend build and lint:
+
+    cd client
+    npm run build
+    npm run lint

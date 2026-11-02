@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { Clock, MapPin, Star } from 'lucide-react';
 import { restaurantApi, foodApi } from '../api';
 import FoodCard from '../components/FoodCard';
-import StarRating from '../components/StarRating';
 
 export default function RestaurantDetail() {
   const { id } = useParams();

@@ -18,7 +18,9 @@ export default function Foods() {
     categoryApi.getAll().then(res => setCategories(res.data.data.categories || []));
   }, []);
 
+  // The API request is an external synchronization; show its loading state when the query changes.
   useEffect(() => {
+    // eslint-disable-next-line react/set-state-in-effect
     setLoading(true);
     const params = {};
     if (categoryId) params.category = categoryId;

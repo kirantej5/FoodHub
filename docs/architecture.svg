@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="400" viewBox="0 0 1000 400" role="img" aria-labelledby="title desc">
+  <title id="title">FoodHub architecture</title>
+  <desc id="desc">React frontend communicates with an Express API, which connects to MongoDB and optional Cloudinary storage.</desc>
+  <rect width="1000" height="400" rx="24" fill="#101010"/>
+  <text x="50" y="55" fill="#fff" font-family="Arial,sans-serif" font-size="26" font-weight="700">FoodHub architecture</text>
+  <text x="50" y="83" fill="#a1a1aa" font-family="Arial,sans-serif" font-size="15">A MERN food ordering flow with JWT auth and optional image storage.</text>
+  <g font-family="Arial,sans-serif" text-anchor="middle">
+    <rect x="55" y="145" width="205" height="110" rx="17" fill="#f97316"/><text x="157" y="188" fill="#fff" font-size="19" font-weight="700">React + Vite</text><text x="157" y="218" fill="#fff1e8" font-size="14">Customer + admin UI</text>
+    <rect x="310" y="145" width="205" height="110" rx="17" fill="#fff"/><text x="412" y="188" fill="#18181b" font-size="19" font-weight="700">Express API</text><text x="412" y="218" fill="#71717a" font-size="14">JWT · validation · Swagger</text>
+    <rect x="565" y="145" width="170" height="110" rx="17" fill="#334155"/><text x="650" y="188" fill="#fff" font-size="19" font-weight="700">MongoDB</text><text x="650" y="218" fill="#cbd5e1" font-size="14">Users · orders · foods</text>
+    <rect x="785" y="145" width="160" height="110" rx="17" fill="#1e293b" stroke="#f97316" stroke-width="2"/><text x="865" y="188" fill="#fff" font-size="19" font-weight="700">Cloudinary</text><text x="865" y="218" fill="#fdba74" font-size="14">Optional images</text>
+  </g>
+  <g fill="none" stroke="#f97316" stroke-width="3" stroke-linecap="round"><path d="M260 200h35"/><path d="M515 200h35"/><path d="M735 200h35"/></g>
+  <g fill="#f97316"><path d="m285 190 15 10-15 10z"/><path d="m540 190 15 10-15 10z"/><path d="m760 190 15 10-15 10z"/></g>
+  <text x="500" y="335" fill="#a1a1aa" font-family="Arial,sans-serif" font-size="14" text-anchor="middle">Local development: Vite :5173 → Express :5000 → MongoDB :27017</text>
+</svg>

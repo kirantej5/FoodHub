@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
-import { foodApi, adminApi, categoryApi } from '../../api';
+import { foodApi, adminApi, categoryApi, restaurantApi } from '../../api';
 import toast from 'react-hot-toast';
 
 const EMPTY_FORM = {
-  name: '', description: '', price: '', category: '',
+  name: '', description: '', price: '', category: '', restaurant: '',
   preparationTime: '', isAvailable: true, isFeatured: false,
   image: null,
 };
 
-function FoodModal({ food, categories, onClose, onSaved }) {
+function FoodModal({ food, categories, restaurants, onClose, onSaved }) {
   const [form, setForm] = useState(food ? {
     name: food.name,
     description: food.description || '',
     price: food.price,
     category: food.category?._id || food.category || '',
+    restaurant: food.restaurant?._id || food.restaurant || '',
     preparationTime: food.preparationTime || '',
     isAvailable: food.isAvailable ?? true,
     isFeatured: food.isFeatured ?? false,
@@ -36,6 +37,10 @@ function FoodModal({ food, categories, onClose, onSaved }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!form.restaurant) {
+      toast.error('Please select a restaurant');
+      return;
+    }
     setSaving(true);
     try {
       const fd = new FormData();
@@ -43,6 +48,7 @@ function FoodModal({ food, categories, onClose, onSaved }) {
       fd.append('description', form.description);
       fd.append('price', form.price);
       fd.append('category', form.category);
+      fd.append('restaurant', form.restaurant);
       fd.append('preparationTime', form.preparationTime);
       fd.append('isAvailable', form.isAvailable);
       fd.append('isFeatured', form.isFeatured);
@@ -112,14 +118,24 @@ function FoodModal({ food, categories, onClose, onSaved }) {
             </div>
           </div>
 
-          {/* Category */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Category *</label>
-            <select name="category" value={form.category} onChange={handleChange} required
-              className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 outline-none">
-              <option value="">Select category...</option>
-              {categories.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
-            </select>
+          {/* Category & Restaurant */}
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Category *</label>
+              <select name="category" value={form.category} onChange={handleChange} required
+                className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 outline-none">
+                <option value="">Select category...</option>
+                {categories.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Restaurant *</label>
+              <select name="restaurant" value={form.restaurant} onChange={handleChange} required
+                className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 outline-none">
+                <option value="">Select restaurant...</option>
+                {restaurants.map(r => <option key={r._id} value={r._id}>{r.name}</option>)}
+              </select>
+            </div>
           </div>
 
           {/* Toggles */}
@@ -156,17 +172,20 @@ function FoodModal({ food, categories, onClose, onSaved }) {
 export default function Foods() {
   const [foods, setFoods] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(null); // null | { food: null | object }
 
   const fetchFoods = async () => {
     try {
-      const [foodsRes, catsRes] = await Promise.all([
+      const [foodsRes, catsRes, restsRes] = await Promise.all([
         foodApi.getAll({ limit: 100 }),
         categoryApi.getAll(),
+        restaurantApi.getAll({ limit: 100 }),
       ]);
       if (foodsRes.data.success) setFoods(foodsRes.data.data.foods);
       if (catsRes.data.success) setCategories(catsRes.data.data.categories);
+      if (restsRes.data.success) setRestaurants(restsRes.data.data.restaurants || restsRes.data.data);
     } catch {
       toast.error('Failed to load foods');
     } finally {
@@ -174,6 +193,8 @@ export default function Foods() {
     }
   };
 
+  // The API request is an external synchronization required when the admin page mounts.
+  // eslint-disable-next-line react/set-state-in-effect
   useEffect(() => { fetchFoods(); }, []);
 
   const handleDelete = async (id) => {
@@ -192,6 +213,7 @@ export default function Foods() {
         <FoodModal
           food={modal.food}
           categories={categories}
+          restaurants={restaurants}
           onClose={() => setModal(null)}
           onSaved={fetchFoods}
         />
@@ -214,6 +236,7 @@ export default function Foods() {
               <tr>
                 <th className="px-6 py-4">Image</th>
                 <th className="px-6 py-4">Name</th>
+                <th className="px-6 py-4">Restaurant</th>
                 <th className="px-6 py-4">Price</th>
                 <th className="px-6 py-4">Category</th>
                 <th className="px-6 py-4">Available</th>
@@ -230,6 +253,7 @@ export default function Foods() {
                     }
                   </td>
                   <td className="px-6 py-4 font-medium text-gray-900 dark:text-white">{food.name}</td>
+                  <td className="px-6 py-4 text-gray-600 dark:text-gray-300">{food.restaurant?.name || '—'}</td>
                   <td className="px-6 py-4 font-semibold text-green-600">${food.price.toFixed(2)}</td>
                   <td className="px-6 py-4">{food.category?.name || '—'}</td>
                   <td className="px-6 py-4">
@@ -255,7 +279,7 @@ export default function Foods() {
               ))}
               {foods.length === 0 && (
                 <tr>
-                  <td colSpan="6" className="px-6 py-10 text-center text-gray-400">
+                  <td colSpan="7" className="px-6 py-10 text-center text-gray-400">
                     No food items found. Add one to get started.
                   </td>
                 </tr>

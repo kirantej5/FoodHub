@@ -4,7 +4,6 @@ import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
-import { useAuthStore } from './store/authStore';
 import { useCartStore } from './store/cartStore';
 
 // Pages
@@ -19,6 +18,7 @@ import OrderDetail from './pages/OrderDetail';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
+import NotFound from './pages/NotFound';
 
 // Admin
 import AdminRoute from './components/admin/AdminRoute';
@@ -70,6 +70,8 @@ export default function App() {
                 <Route path="/admin/orders" element={<AdminOrders />} />
               </Route>
             </Route>
+            {/* Catch-all 404 Route */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         

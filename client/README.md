@@ -1,16 +1,30 @@
-# React + Vite
+# FoodHub Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+The React/Vite frontend for the FoodHub food-ordering platform.
 
-Currently, two official plugins are available:
+## Run it
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+From the repository root:
 
-## React Compiler
+```bash
+npm run install:all
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Copy `client/.env.example` to `client/.env`, then start the frontend and backend together:
 
-## Expanding the Oxlint configuration
+```bash
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+The frontend runs at <http://localhost:5173> and proxies `/api` requests to the backend at port 5000.
+
+## Useful commands
+
+```bash
+npm run dev
+npm run build
+npm run lint
+npm test
+```
+
+See the [root README](../README.md) for database setup, seed data, API documentation, and demo credentials.

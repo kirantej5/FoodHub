@@ -1,5 +1,5 @@
-﻿import { useState, useEffect } from 'react';
-import { User, Mail, Phone, MapPin, Camera } from 'lucide-react';
+﻿import { useState } from 'react';
+import { User, MapPin, Camera } from 'lucide-react';
 import { useAuthStore } from '../store/authStore';
 import { authApi } from '../api';
 import toast from 'react-hot-toast';
@@ -19,7 +19,7 @@ export default function Profile() {
       const res = await authApi.updateProfile(formData);
       updateUser(res.data.data.user);
       toast.success('Profile updated');
-    } catch (err) {
+    } catch {
       toast.error('Failed to update profile');
     } finally {
       setLoading(false);

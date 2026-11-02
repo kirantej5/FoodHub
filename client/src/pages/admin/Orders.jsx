@@ -30,6 +30,8 @@ export default function Orders() {
     }
   };
 
+  // The API request is an external synchronization required when the admin page mounts.
+  // eslint-disable-next-line react/set-state-in-effect
   useEffect(() => { fetchOrders(); }, []);
 
   const handleStatusChange = async (id, status) => {

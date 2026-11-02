@@ -12,14 +12,17 @@ export default function Users() {
       if (res.data.success) {
         setUsers(res.data.data.users);
       }
-    } catch (err) {
+    } catch {
       toast.error('Failed to load users');
     } finally {
       setLoading(false);
     }
   };
 
+  // The API request is an external synchronization required when the admin page mounts.
   useEffect(() => {
+    // The API request is an external synchronization required when the admin page mounts.
+    // eslint-disable-next-line react/set-state-in-effect
     fetchUsers();
   }, []);
 
@@ -31,7 +34,7 @@ export default function Users() {
         toast.success('User deleted');
         fetchUsers();
       }
-    } catch (err) {
+    } catch {
       toast.error('Failed to delete user');
     }
   };

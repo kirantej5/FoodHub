@@ -1,4 +1,4 @@
-﻿import { Star, StarHalf } from 'lucide-react';
+﻿import { Star } from 'lucide-react';
 
 export default function StarRating({ rating, count, size = 14 }) {
   const fullStars = Math.floor(rating);
